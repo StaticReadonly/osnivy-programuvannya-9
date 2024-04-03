@@ -99,8 +99,11 @@ public class Main {
                 Comparator.comparing((Pixel p) -> p.getX()).reversed());
         reverseXSet.addAll(Arrays.asList(pixels));
 
-        System.out.println("Sort by x coordinates in reverse order:");
-        reverseXSet.forEach(System.out::println);
+        System.out.println("\nSort by x coordinates in reverse order:");
+        for (Pixel pixel : reverseXSet) {
+            System.out.println(pixel);
+        }
+
 
 
         //sort by x, if equality - by y
