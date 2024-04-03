@@ -95,19 +95,17 @@ public class Main {
         }
 
         //sort by x in reverse order
-        TreeSet<Pixel> reverseXSet = new TreeSet<>((p1, p2) -> Integer.compare(p2.getX(), p1.getX()));
+        TreeSet<Pixel> reverseXSet = new TreeSet<>(
+                Comparator.comparing((Pixel p) -> p.getX()).reversed());
         reverseXSet.addAll(Arrays.asList(pixels));
 
-        System.out.println("\nSort by x coordinates in reverse order:");
-        for (Pixel pixel : reverseXSet) {
-            System.out.println(pixel);
-        }
+        System.out.println("Sort by x coordinates in reverse order:");
+        reverseXSet.forEach(System.out::println);
+
 
         //sort by x, if equality - by y
-        Arrays.sort(pixels, (p1, p2) -> {
-            int result = Integer.compare(p1.getX(), p2.getX());
-            return result != 0 ? result : Integer.compare(p1.getY(), p2.getY());
-        });
+        Comparator<Pixel> comparator = Comparator.comparing((Pixel p) -> p.getX()).thenComparing((Pixel p) -> p.getY());
+        Arrays.sort(pixels, comparator);
 
         System.out.println("\nSort by x-coordinates, and in case of equality - by y-coordinates:");
         for (Pixel pixel : pixels) {
