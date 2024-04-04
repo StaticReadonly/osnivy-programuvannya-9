@@ -6,6 +6,10 @@ class Color {
     private int blue;
 
     public Color(int red, int green, int blue) {
+
+        if ((red < 0 || red > 255) || (green < 0 || green > 255) || (blue < 0 || blue > 255))
+            throw new IllegalArgumentException("RGB values must be in range from 0 to 255");
+
         this.red = red;
         this.green = green;
         this.blue = blue;
@@ -95,8 +99,7 @@ public class Main {
         }
 
         //sort by x in reverse order
-        TreeSet<Pixel> reverseXSet = new TreeSet<>(
-                Comparator.comparing((Pixel p) -> p.getX()).reversed());
+        TreeSet<Pixel> reverseXSet = new TreeSet<>(Comparator.comparing((Pixel p) -> p.getX()).reversed());
         reverseXSet.addAll(Arrays.asList(pixels));
 
         System.out.println("\nSort by x coordinates in reverse order:");
@@ -104,8 +107,7 @@ public class Main {
             System.out.println(pixel);
         }
 
-
-
+        
         //sort by x, if equality - by y
         Comparator<Pixel> comparator = Comparator.comparing((Pixel p) -> p.getX()).thenComparing((Pixel p) -> p.getY());
         Arrays.sort(pixels, comparator);
